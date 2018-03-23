@@ -117,7 +117,7 @@ app.get('/trier/:cle/:ordre', (req, res) => {
  let cursor = db.collection('membres').find().sort(cle,ordre).toArray(function(err, resultat){
 
   ordre = (req.params.ordre == 'asc' ? 'desc' : 'asc')  
- res.render('membres.ejs', {membress: resultat, cle, ordre })	
+ res.render('liste.ejs', {membress: resultat, cle, ordre })	
 })
 
 }) 
@@ -152,6 +152,17 @@ app.get('/vider', (req, res) => {
 			
 		})
 	res.redirect('/liste')
+})
+
+app.get('/profil/:id', (req, res) => {
+    let cursor = db.collection('adresse')
+                .find({"_id": ObjectID(req.params.id)}).toArray(function(err, resultat){
+    if (err) return console.log(err)        
+    // transfert du contenu vers la vue index.ejs (renders)
+    // affiche le contenu de la BD
+    res.render('profil.ejs', {adresses: resultat}) 
+
+ }) 
 })
 
 /////////////////////////////////////////////////////////// Route /chat

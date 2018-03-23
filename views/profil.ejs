@@ -1,0 +1,17 @@
+<%- include('composants/head') %> 
+<body>
+ <%- include('composants/entete') %>
+ <div id="profil">
+ <h2>Profil</h2>
+ <% adresses.forEach(elm => {%>
+ <p><span>Prénom: </span><%=elm.prenom%></p>
+ <p><span>Nom: </span><%=elm.nom%></p>
+ <p><span>Téléphone: </span><%=elm.telephone%></p>
+ <p><span>Courriel: </span><%=elm.courriel%></p>
+ <p><span>Ville: </span><%=elm.ville%></p>
+ <p><span>Emploi: </span><%=elm.emploi%></p>
+ <p><span>Loisir: </span><%=elm.loisir%></p>
+ <% }) %>
+ </div>
+ <%- include('composants/footer') %>
+</body>
