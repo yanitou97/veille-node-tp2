@@ -9,11 +9,11 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs'); // générateur de template
 
 app.get('/', function (req, res) {
-   fs.readFile( __dirname + "/public/data/" + "adresses.json", 'utf8',(err, data) => {
+   fs.readFile( __dirname + "/public/data/" + "membres.json", 'utf8',(err, data) => {
    	if (err) { return console.error(err);}
         console.log( data );
         let resultat = JSON.parse(data);           
-  res.render('gabarit_3.ejs', {adresses: resultat})  
+  res.render('gabarit_3.ejs', {membres: resultat})  
   });
 })
 

@@ -16,7 +16,7 @@ let db // variable qui contiendra le lien sur la BD
 
 MongoClient.connect('mongodb://127.0.0.1:27017', (err, database) => {
  if (err) return console.log(err)
- db = database.db('carnet_adresse')
+ db = database.db('membres')
 
 // lancement du serveur Express sur le port 8081
  server.listen(8081, (err) => {
@@ -41,12 +41,12 @@ app.get('/', function (req, res) {
  
   });
 
-//////////////////////////////////////////  Route Adresse
-app.get('/adresse', function (req, res) {
-   var cursor = db.collection('adresse')
+//////////////////////////////////////////  Route liste
+app.get('/liste', function (req, res) {
+   var cursor = db.collection('membres')
                 .find().toArray(function(err, resultat){
  if (err) return console.log(err)        
- res.render('adresse.ejs', {adresses: resultat})   
+ res.render('membre.ejs', {membres: resultat})   
   });
 })
 //////////////////////////////////////////  Route Rechercher
@@ -58,7 +58,7 @@ app.post('/rechercher',  (req, res) => {
 	console.log("match[1] = " + match[1]); 
 
    console.log(recherche)
-   let cursor = db.collection('adresse')
+   let cursor = db.collection('membres')
                 .find({$or: [ 
                 				{nom: {$regex :regRecherche, $options: "$i"}},
                 			  {prenom: {$regex :regRecherche, $options: "$i"}},
@@ -67,17 +67,17 @@ app.post('/rechercher',  (req, res) => {
                 			]
                 		}).toArray(function(err, resultat){
  if (err) return console.log(err)        
- res.render('adresse.ejs', {adresses: resultat, recherche:recherche})   
+ res.render('membres.ejs', {membres: resultat, recherche:recherche})   
   });
 })
 ////////////////////////////////////////// Route /ajouter
 app.post('/ajouter', (req, res) => {
 console.log('route /ajouter')	
- db.collection('adresse').save(req.body, (err, result) => {
+ db.collection('membres').save(req.body, (err, result) => {
  if (err) return console.log(err)
  // console.log(req.body)	
  console.log('sauvegarder dans la BD')
- res.redirect('/adresse')
+ res.redirect('/liste')
  })
 })
 
@@ -86,10 +86,10 @@ app.post('/modifier', (req, res) => {
 console.log('route /modifier')
 // console.log('util = ' + util.inspect(req.body));
 req.body._id = 	ObjectID(req.body._id)
- db.collection('adresse').save(req.body, (err, result) => {
+ db.collection('membres').save(req.body, (err, result) => {
 	 if (err) return console.log(err)
 	 console.log('sauvegarder dans la BD')
-	 res.redirect('/adresse')
+	 res.redirect('/liste')
 	 })
 })
 
@@ -100,11 +100,11 @@ app.get('/detruire/:id', (req, res) => {
  // console.log('util = ' + util.inspect(req.params));	
  var id = req.params.id
  console.log(id)
- db.collection('adresse')
+ db.collection('membres')
  .findOneAndDelete({"_id": ObjectID(req.params.id)}, (err, resultat) => {
 
 if (err) return console.log(err)
- res.redirect('/adresse')  // redirige vers la route qui affiche la collection
+ res.redirect('/liste')  // redirige vers la route qui affiche la collection
  })
 })
 
@@ -114,10 +114,10 @@ app.get('/trier/:cle/:ordre', (req, res) => {
 
  let cle = req.params.cle
  let ordre = (req.params.ordre == 'asc' ? 1 : -1)
- let cursor = db.collection('adresse').find().sort(cle,ordre).toArray(function(err, resultat){
+ let cursor = db.collection('membres').find().sort(cle,ordre).toArray(function(err, resultat){
 
   ordre = (req.params.ordre == 'asc' ? 'desc' : 'asc')  
- res.render('adresse.ejs', {adresses: resultat, cle, ordre })	
+ res.render('membres.ejs', {membress: resultat, cle, ordre })	
 })
 
 }) 
@@ -127,7 +127,7 @@ app.get('/peupler', (req, res) => {
 	/*
 	for (elm of tabMembre)
 	{
-	let cursor = db.collection('adresse').save(elm, (err, res)=>{
+	let cursor = db.collection('membres').save(elm, (err, res)=>{
 		if(err) console.error(err)
 			console.log('ok')
 
@@ -135,23 +135,23 @@ app.get('/peupler', (req, res) => {
 	}
 	*/
 
-	let cursor = db.collection('adresse').insertMany(collectionMembre, (err, resultat)=>{
+	let cursor = db.collection('membres').insertMany(collectionMembre, (err, resultat)=>{
 		if(err) console.error(err)
 			// console.log('ok')
 			// console.log(util.inspect(resultat))
-			res.redirect('/adresse')
+			res.redirect('/liste')
 		})
 })
 
 /////////////////////////////////////////////////////////  Route /peupler
 app.get('/vider', (req, res) => {
 
-	let cursor = db.collection('adresse').drop((err, res)=>{
+	let cursor = db.collection('membres').drop((err, res)=>{
 		if(err) console.error(err)
 			console.log('ok')
 			
 		})
-	res.redirect('/adresse')
+	res.redirect('/liste')
 })
 
 /////////////////////////////////////////////////////////// Route /chat
