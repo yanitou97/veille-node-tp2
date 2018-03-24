@@ -5,13 +5,13 @@
  <div id="profil">
  <h2>Profil</h2>
  <% membres.forEach(elm => {%>
- <p><span>Prénom: </span><%=elm.prenom%></p>
- <p><span>Nom: </span><%=elm.nom%></p>
- <p><span>Téléphone: </span><%=elm.telephone%></p>
- <p><span>Courriel: </span><%=elm.courriel%></p>
- <p><span>Ville: </span><%=elm.ville%></p>
- <p><span>Emploi: </span><%=elm.emploi%></p>
- <p><span>Loisir: </span><%=elm.loisir%></p>
+ <p><span><%= __('prenom') %>: </span><%=elm.prenom%></p>
+ <p><span><%= __('nom') %>: </span><%=elm.nom%></p>
+ <p><span><%= __('telephone') %>: </span><%=elm.telephone%></p>
+ <p><span><%= __('courriel') %>: </span><%=elm.courriel%></p>
+ <p><span><%= __('ville') %>: </span><%=elm.ville%></p>
+ <p><span><%= __('emploi') %>: </span><%=elm.emploi%></p>
+ <p><span><%= __('loisir') %>: </span><%=elm.loisir%></p>
  <% }) %>
  </div>
  <%- include('composants/footer') %>
