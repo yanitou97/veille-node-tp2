@@ -1,13 +1,16 @@
 {
-	"courriel": "Courriel",
+	"langueLien": "en",
+	"langue": "English",
 	"accueil": "Accueil",
-	"vider": "Vider",
-	"adresse": "Adresse",
-	"nom": "Nom",
-	"prenom": "Prenom",
-	"telephone": "Telephone",
-	"modifier": "Modifier",
-	"ajouter": "Ajouter",
-	"langue": "EN",
-	"langueLien": "en"
+	"liste": "Liste des membres",
+	"clavardage": "Clavardage",
+	"titreAccueil": "TP2 - Gestion de membre et clavardage",
+	"sousTitreAccueil": "Cours : Programmation et veille technologique",
+	"remiseAccueil": "Remise: 23 mars 2018",
+	"descriptionAccueil": "Projet utilisant Node.js, Express et MongoDB pour développer une application Web de gestion de membres",
+	"lien1": "Programmation et veille technologique",
+	"lien2": "Le site officiel de Node.js",
+	"lien3": "Fondation Node.js",
+	"lien4": "Fondation Linux",
+	"lien5": "Télécharger mongoDB"
 }
