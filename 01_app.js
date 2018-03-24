@@ -8,10 +8,17 @@ const peupler = require('./mes_modules/peupler')
 const bodyParser= require('body-parser')
 const MongoClient = require('mongodb').MongoClient // le pilote MongoDB
 const ObjectID = require('mongodb').ObjectID;
+const i18n = require('i18n');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 /* on associe le moteur de vue au module «ejs» */
 app.use(express.static('public'));
+
+i18n.configure({ 
+   locales : ['fr', 'en'],
+   cookie : 'langueChoisie', 
+   directory : __dirname + '/locales' })
+app.use(i18n.init);
 
 
 let db // variable qui contiendra le lien sur la BD
@@ -36,6 +43,15 @@ Les routes
 
 ////////////////////////////////////////// Route /
 app.set('view engine', 'ejs'); // générateur de template
+
+app.get('/:local(en|fr)', function(req, res) {
+
+	console.log("req.params.local = " + req.params.local)
+	res.cookie('langueChoisie', req.params.local)
+	res.setLocale(req.params.local)
+	console.log(res.__('courriel'))
+	res.redirect(req.get('referer'))
+})
 
 app.get('/', function (req, res) {
       
