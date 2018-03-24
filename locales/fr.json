@@ -15,9 +15,14 @@
 	"ville": "Ville",
 	"emploi": "Emploi",
 	"loisir": "Loisir",
+	"enregistrer": "Enregistrement",
+	"transmettre": "Transmettre",
+	"deconnection": "Déconnection",
+	"nomChat": "Nom",
 	"lien1": "Programmation et veille technologique",
 	"lien2": "Le site officiel de Node.js",
 	"lien3": "Fondation Node.js",
 	"lien4": "Fondation Linux",
-	"lien5": "Télécharger mongoDB"
+	"lien5": "Télécharger mongoDB",
+	"enregistrement": "enregistrement"
 }

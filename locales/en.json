@@ -7,7 +7,7 @@
 	"titreAccueil": "TP2 - Member Management and Chat",
 	"sousTitreAccueil": "Courses: Programming and technology eve",
 	"remiseAccueil": "Date of delivery: March 23, 2018",
-	"descriptionAccueil" : "Project using Node.js, Express and MongoDB to develop a member and chat web application",
+	"descriptionAccueil": "Project using Node.js, Express and MongoDB to develop a member and chat web application",
 	"nom": "Last name",
 	"prenom": "First name",
 	"telephone": "Phone",
@@ -15,9 +15,14 @@
 	"ville": "City",
 	"emploi": "Employment",
 	"loisir": "Leisure",
+	"enregistrer": "Log in",
+	"transmettre": "Send",
+	"deconnection": "Log out",
+	"nomChat": "Name",
 	"lien1": "Programming and technology eve",
 	"lien2": "Node.js official Web Site",
 	"lien3": "Node.js Foundation",
 	"lien4": "Linux Foundation",
-	"lien5": "Download mongoDB"
+	"lien5": "Download mongoDB",
+	"enregistrement": "enregistrement"
 }
