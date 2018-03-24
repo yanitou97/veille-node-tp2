@@ -8,9 +8,11 @@ const peupler = require('./mes_modules/peupler')
 const bodyParser= require('body-parser')
 const MongoClient = require('mongodb').MongoClient // le pilote MongoDB
 const ObjectID = require('mongodb').ObjectID;
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 /* on associe le moteur de vue au module «ejs» */
 app.use(express.static('public'));
+
 
 let db // variable qui contiendra le lien sur la BD
 
@@ -71,7 +73,7 @@ app.post('/rechercher',  (req, res) => {
   });
 })
 ////////////////////////////////////////// Route /ajouter
-app.post('/ajouter', (req, res) => {
+/*app.post('/ajouter', (req, res) => {
 console.log('route /ajouter')	
  db.collection('membres').save(req.body, (err, result) => {
  if (err) return console.log(err)
@@ -106,7 +108,7 @@ app.get('/detruire/:id', (req, res) => {
 if (err) return console.log(err)
  res.redirect('/liste')  // redirige vers la route qui affiche la collection
  })
-})
+})*/
 
 
 ///////////////////////////////////////////////////////////   Route /trier
@@ -164,6 +166,38 @@ app.get('/profil/:id', (req, res) => {
     res.render('profil.ejs', {membres: resultat}) 
 
  }) 
+})
+
+app.post('/ajax_modifier', (req,res) => {
+   req.body._id = ObjectID(req.body._id)
+   console.log(util.inspect(req.body));
+   console.log('route /ajax_modifier')
+   db.collection('membres').save(req.body, (err, result) => {
+   if (err) return console.log(err)
+       console.log('sauvegarder dans la BD')
+   res.send(JSON.stringify(req.body));
+   // res.status(204)
+   })
+})
+
+app.get('/ajax_detruire/:id', (req,res) => {
+   	var id = req.params.id
+ 	console.log(id)
+ 	db.collection('membres')
+ 	.findOneAndDelete({"_id": ObjectID(req.params.id)}, (err, resultat) => {
+
+	if (err) return console.log(err)
+ 		res.send(JSON.stringify(ObjectID(req.params.id)));  // redirige vers la route qui affiche la collection
+   	})
+})
+
+app.post('/ajax_ajouter', (req,res) => {
+   db.collection('membres').insert(req.body, (err, result) => {
+   if (err) return console.log(err)
+       console.log('sauvegarder dans la BD')
+   		res.send(JSON.stringify(req.body));
+   // res.status(204)
+   })
 })
 
 /////////////////////////////////////////////////////////// Route /chat
