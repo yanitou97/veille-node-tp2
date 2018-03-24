@@ -107,8 +107,25 @@ const Tableau = {
                   'Coralie',
                   'Pénéloppe',
                   'Charlotte'
-                    ]
-
+                    ], 
+                  emploi : [
+                  "Policier",
+                  "Avocat",
+                  "Pompier",
+                  "Vétérinaire",
+                  "Médecin",
+                  "Concierge",
+                  "Cuisinier"
+                     ], 
+                  loisir : [
+                  "Camping",
+                  "Lire",
+                  "Cuisiner",
+                  "Art",
+                  "Cinéma",
+                  "Jeux de société",
+                  "Jeux vidéo"
+               ]   
             }        
 
 module.exports = Tableau

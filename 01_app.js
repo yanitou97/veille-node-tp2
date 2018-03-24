@@ -124,6 +124,7 @@ app.get('/trier/:cle/:ordre', (req, res) => {
 /////////////////////////////////////////////////////////  Route /peupler
 app.get('/peupler', (req, res) => {
 	let collectionMembre = peupler()
+	console.log(collectionMembre)
 	/*
 	for (elm of tabMembre)
 	{
